@@ -1,5 +1,7 @@
-.DS_Store
+cs_class/*.out
+cs_class/*.exe
+cs_lab/*.out
+cs_lab/*.exe
+# Ignore binaries everywhere
 *.out
-a.out
 *.exe
-*.o
