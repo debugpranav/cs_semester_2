@@ -2,7 +2,7 @@
   Program to implement Queue using Linked List (InitQueue and EnQueue)
   Pranav
   9-12-2025
-  queue_enqueue.c
+  queuelist.c
 */
 
 #include<stdio.h>
