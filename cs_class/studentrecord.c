@@ -1,5 +1,5 @@
 /*
-  Student Record Management System (Singly Linked List)
+  Student Record Management System (Fixed Logic and Syntax)
   Pranav
   12-12-2025
   studentrecord.c
@@ -9,7 +9,6 @@
 #include<stdlib.h>
 #include<memory.h>
 #include<string.h>
-
 
 typedef struct StudentData {
     char SID[20];
@@ -26,6 +25,7 @@ typedef struct ListType {
 
 LISTNODE *Head;
 
+// Function Prototypes
 void InitList();
 void InsertListNode(STUDENT S);
 void DisplayList(LISTNODE *Head);
@@ -37,7 +37,7 @@ void Menu(int *Choice);
 int main(){
     int choice;
     char searchID[20];
-    STUDENT s;
+    STUDENT S;
 
     InitList();
 
@@ -47,21 +47,27 @@ int main(){
         switch(choice){
             case 1: // Add Student
                 printf("\nEnter Register Number: ");
-                scanf("%s", s.SID);
+                scanf("%s", S.SID);
                 printf("Enter Name: ");
-                scanf("%s", s.Name);
+                scanf("%s", S.Name);
                 printf("Enter Marks (CS, MATH, STATS): ");
-                scanf("%f %f %f", &s.M1, &s.M2, &s.M3);
+                scanf("%f %f %f", &S.M1, &S.M2, &S.M3);
                 
-                s.Total = s.M1 + s.M2 + s.M3;
-                s.Avg = s.Total / 3.0;
+                S.Total = S.M1 + S.M2 + S.M3;
+                S.Avg = S.Total / 3.0;
                 
-                if(s.M1 < 35 || s.M2 < 35 || s.M3 < 35) s.Result = -1;
-                else if(s.Avg >= 70) s.Result = 1;
-                else if(s.Avg >= 60) s.Result = 2;
-                else s.Result = 3;
-
-                InsertListNode(s);
+                // Fixed Logic: Check Fail first, then check grades
+                if(S.M1 < 35 || S.M2 < 35 || S.M3 < 35){
+                    S.Result = -1; // Fail
+                } else if(S.Avg >= 80){
+                    S.Result = 1; // Distinction
+                } else if(S.Avg >= 60){
+                    S.Result = 2; // First Class
+                } else {
+                    S.Result = 3; // Pass
+                }
+                
+                InsertListNode(S);
                 break;
 
             case 2: // Delete Student
@@ -183,12 +189,12 @@ void PrintMksCard(STUDENT S){
     printf("\n\t\tMARKS CARD\n");
     printf("REGISTER NUMBER:\t%s\n", S.SID);
     printf("NAME:\t\t\t%s\n", S.Name);
-    printf("CS:\t\t%.0f\n", S.M1);
-    printf("MATH:\t\t%.0f\n", S.M2);
-    printf("STATS:\t\t%.0f\n", S.M3);
-    printf("TOTAL:\t\t%.0f\n", S.Total);
-    printf("AVERAGE:\t%.2f\n", S.Avg);
-    printf("RESULTS:\t");
+    printf("CS:\t\t\t%.0f\n", S.M1);
+    printf("MATH:\t\t\t%.0f\n", S.M2);
+    printf("STATS:\t\t\t%.0f\n", S.M3);
+    printf("TOTAL:\t\t\t%.0f\n", S.Total);
+    printf("AVERAGE:\t\t%.2f\n", S.Avg);
+    printf("RESULTS:\t\t");
     
     if(S.Result == 1){
         printf("Distinction\n");
@@ -213,8 +219,9 @@ void DisplayList(LISTNODE *Head){
     printf("\tCLASS REPORT\n");
     printf("\tBSc - Semester 1\n\n");
     
-    printf("Register Number\tName\tCS\tMATH\tTOTAL\tAVERAGE\tRESULTS\n");
-    printf("--------------------------------------------------------------------\n");
+    // Fixed Header: Added STATS to match the columns
+    printf("Register Number\tName\tCS\tMATH\tSTATS\tTOTAL\tAVERAGE\tRESULTS\n");
+    printf("----------------------------------------------------------------------------\n");
     
     Current = Head;
     while(Current != NULL){
