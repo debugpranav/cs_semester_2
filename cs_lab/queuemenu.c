@@ -106,12 +106,10 @@ int DeQueue(){
   if(Front == Rear){
     Front = NULL;
     Rear = NULL;
-  }
-  else {
+  } else {
     // Case 3: More than one node, move Front forward
     Front = Front->Next;
   }
-  
   free(Current);
   return num;
 }
