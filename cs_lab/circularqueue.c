@@ -84,8 +84,7 @@ void EnQueue(int num){
     Front = Node;
     Rear = Node;
     Rear->Next = Front; // Point back to Front to form a circle
-  }
-  else {
+  } else {
     // Case 2: Add to Rear
     Rear->Next = Node;
     Rear = Node;
@@ -110,14 +109,12 @@ int DeQueue(){
     Front = NULL;
     Rear = NULL;
     free(Current);
-  }
-  else {
+  } else {
     // Case 3: Multiple nodes
     Front = Front->Next;
     Rear->Next = Front; // Update Rear to point to the new Front
     free(Current);
   }
-  
   return num;
 }
 
