@@ -1,5 +1,5 @@
 /*
-  Student Record Management System (Fixed Logic and Syntax)
+  Student Record Management System
   Pranav
   12-12-2025
   studentrecord.c
@@ -15,7 +15,7 @@ typedef struct StudentData {
     char Name[50];
     float M1, M2, M3;
     float Total, Avg;
-    int Result; // Codes: 1=Distinction, 2=First Class, 3=Pass, -1=Fail
+    int Result;
 } STUDENT;
 
 typedef struct ListType {
@@ -56,7 +56,6 @@ int main(){
                 S.Total = S.M1 + S.M2 + S.M3;
                 S.Avg = S.Total / 3.0;
                 
-                // Fixed Logic: Check Fail first, then check grades
                 if(S.M1 < 35 || S.M2 < 35 || S.M3 < 35){
                     S.Result = -1; // Fail
                 } else if(S.Avg >= 80){
@@ -219,7 +218,6 @@ void DisplayList(LISTNODE *Head){
     printf("\tCLASS REPORT\n");
     printf("\tBSc - Semester 1\n\n");
     
-    // Fixed Header: Added STATS to match the columns
     printf("Register Number\tName\tCS\tMATH\tSTATS\tTOTAL\tAVERAGE\tRESULTS\n");
     printf("----------------------------------------------------------------------------\n");
     
