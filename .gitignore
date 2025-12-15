@@ -5,3 +5,4 @@ cs_lab/*.exe
 # Ignore binaries everywhere
 *.out
 *.exe
+*.DS_Store
