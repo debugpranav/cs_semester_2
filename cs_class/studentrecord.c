@@ -27,7 +27,7 @@ LISTNODE *Head;
 
 // Function Prototypes
 void InitList();
-void InsertListNode(STUDENT S);
+void InsertStudentList(STUDENT S);
 void DisplayList(LISTNODE *Head);
 void SearchStudent(char SID[]);
 void PrintMksCard(STUDENT S);
@@ -66,7 +66,7 @@ int main(){
                     S.Result = 3; // Pass
                 }
                 
-                InsertListNode(S);
+                InsertStudentList(S);
                 break;
 
             case 2: // Delete Student
@@ -110,7 +110,7 @@ void Menu(int *Choice){
     scanf("%d", Choice);
 }
 
-void InsertListNode(STUDENT S){
+void InsertStudentList(STUDENT S){
     LISTNODE *Node, *Current;
     
     Node = (LISTNODE *)malloc(sizeof(LISTNODE));
