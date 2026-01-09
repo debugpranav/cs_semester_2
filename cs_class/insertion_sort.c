@@ -1,4 +1,4 @@
-/* program to perform insertion sort on an array of integers
+/* Program to perform Insertion Sort
    Pranav
    8 Jan, 2026
    insertion_sort.c */
