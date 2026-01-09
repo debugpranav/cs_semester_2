@@ -47,19 +47,17 @@ void DisplayArray(int A[], int n){
 }
 
 void SelectionSort(int A[], int n){
-  int i, j, min_idx, temp;
-  
-  for(i=0; i < n-1; i++){
-    min_idx = i;
-    // Find the minimum element in unsorted array
-    for(j = i+1; j < n; j++){
-      if(A[j] < A[min_idx]){
-        min_idx = j;
+  int min, loc, i, j;
+  for(i=0; i<n-1; i++){
+    min = A[i];
+    loc = i;
+    for(j=i+1; j<n; j++){
+      if(A[j] < min){
+        min = A[j];
+        loc = j;
       }
     }
-    // Swap the found minimum element with the first element
-    temp = A[min_idx];
-    A[min_idx] = A[i];
-    A[i] = temp;
+    A[loc] = A[i];
+    A[i] = min;
   }
 }
