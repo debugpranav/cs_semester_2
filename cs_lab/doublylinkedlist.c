@@ -9,25 +9,25 @@
 #include<stdlib.h>
 #include<memory.h>
 
-typedef struct ListType {
+typedef struct DbLnkType {
   int Data;
-  struct ListType *Next;
-  struct ListType *Previous;
-} LISTNODE;
+  struct DbLnkType *Next;
+  struct DbLnkType *Previous;
+} DBLLNKNODE;
 
-LISTNODE *Head;
+DBLLNKNODE *Head;
 
 //prototype
-void InitList();
-void InsertNode(int num);
+void InitDblList();
+void InsertDblNode(int num);
 void DisplayForward();
 void DisplayBackward();
-int DeleteNode(int num);
+int DeleteDblNode(int num);
 
 int main (){
   int choice, num, status;
 
-  InitList();
+  InitDblList();
 
   while(1){
     printf("\n--- Doubly Linked List Menu ---\n");
@@ -42,7 +42,7 @@ int main (){
       case 1:
         printf("Enter the number to insert: ");
         scanf("%d", &num);
-        InsertNode(num);
+        InsertDblNode(num);
         break;
         
       case 2:
@@ -55,7 +55,7 @@ int main (){
       case 3:
         printf("Enter the number to delete: ");
         scanf("%d", &num);
-        status = DeleteNode(num);
+        status = DeleteDblNode(num);
         if(status == 1)
           printf("Number %d deleted successfully.\n", num);
         else
@@ -72,15 +72,15 @@ int main (){
   return 0;
 }
 
-void InitList(){
+void InitDblList(){
   Head = NULL;
 }
 
-void InsertNode(int num){
-  LISTNODE *Current, *Node;
+void InsertDblNode(int num){
+  DBLLNKNODE *Current, *Node, *Previous;
   
   // Allocate memory
-  Node = (LISTNODE *)malloc(sizeof(LISTNODE));
+  Node = (DBLLNKNODE *)malloc(sizeof(DBLLNKNODE));
   Node->Data = num;
   Node->Next = NULL;
   Node->Previous = NULL;
@@ -91,19 +91,27 @@ void InsertNode(int num){
     return;
   }
 
-  // Case 2: Traverse to the end and insert
+  //Case 2: Data on the the incoming node is less than that of the Head of the Doubly Linked List, attatch head to the node & make that node the head of the list
+  if(num <= Head->Data){
+    Node->Next = Head;
+    Head->Previous = Node;
+    Head = Node;
+  }
+
+  //Case 3: Traverse the list and insert the new node at an appropriate location
   Current = Head;
-  while(Current->Next != NULL){
+  while(Current && num >= Current->Data){
+    Previous = Current;
     Current = Current->Next;
   }
-  
-  // Link the new node
-  Current->Next = Node;      // Forward link
-  Node->Previous = Current;  // Backward link
+  Previous->Next = Node;
+  Node->Previous = Previous;
+  Node->Next = Current;
+  Current->Previous = Node;
 }
 
 void DisplayForward(){
-  LISTNODE *Current;
+  DBLLNKNODE *Current;
   if(Head == NULL){
     printf("List is empty\n");
     return;
@@ -118,7 +126,7 @@ void DisplayForward(){
 }
 
 void DisplayBackward(){
-  LISTNODE *Current;
+  DBLLNKNODE *Current;
   if(Head == NULL){
     printf("List is empty\n");
     return;
@@ -140,7 +148,7 @@ void DisplayBackward(){
 }
 
 int DeleteNode(int num){
-  LISTNODE *Current;
+  DBLLNKNODE *Current;
 
   if(Head == NULL){
     return -1;
