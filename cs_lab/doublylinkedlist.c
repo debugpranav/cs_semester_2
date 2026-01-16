@@ -91,23 +91,29 @@ void InsertDblNode(int num){
     return;
   }
 
-  //Case 2: Data on the the incoming node is less than that of the Head of the Doubly Linked List, attatch head to the node & make that node the head of the list
+  // Case 2: Insert at Head (Data is smaller than Head)
   if(num <= Head->Data){
     Node->Next = Head;
     Head->Previous = Node;
     Head = Node;
+    return;
   }
 
-  //Case 3: Traverse the list and insert the new node at an appropriate location
+  // Case 3: Traverse and Insert (Middle or End)
   Current = Head;
-  while(Current && num >= Current->Data){
+  Previous = NULL;
+
+  while(Current != NULL && num >= Current->Data){
     Previous = Current;
     Current = Current->Next;
   }
   Previous->Next = Node;
   Node->Previous = Previous;
   Node->Next = Current;
-  Current->Previous = Node;
+  
+  if(Current != NULL){
+    Current->Previous = Node;
+  }
 }
 
 void DisplayForward(){
@@ -147,7 +153,7 @@ void DisplayBackward(){
   printf("NULL\n");
 }
 
-int DeleteNode(int num){
+int DeleteDblNode(int num){
   DBLLNKNODE *Current;
 
   if(Head == NULL){
