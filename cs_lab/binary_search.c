@@ -1,8 +1,8 @@
 /*
-  Program to perform Bubble Sort and Binary Search
+  Program to perform Binary Search
   Pranav
   18 Jan, 2026
-  binary_search_sort.c
+  binary_search.c
 */
 
 #include <stdio.h>
