@@ -13,7 +13,6 @@ typedef struct TreeType{
 
 TREENODE *Root;
 
-// Function declarations
 void InitTree();
 void InsertTreeNode(int num);
 void Preorder(TREENODE *Root);
@@ -25,7 +24,7 @@ int SearchNode(TREENODE *Root, int num);
 int main(){
     int choice, num;
     
-    InitTree();  // Initialize the tree
+    InitTree();
     
     while(1){
         printf("\n========== BINARY SEARCH TREE MENU ==========\n");
@@ -114,7 +113,6 @@ int main(){
     return 0;
 }
 
-// Function definitions
 void InitTree(){
     Root = NULL;
 }
