@@ -20,7 +20,7 @@ void Preorder(TREENODE *Root);
 void Inorder(TREENODE *Root);
 void Postorder(TREENODE *Root);
 void DisplayLeafNodes(TREENODE *Root);
-int SearchNode(TREENODE *Root, int num);
+int SearchNode(int num);
 
 int main(){
     int choice, num;
@@ -94,7 +94,7 @@ int main(){
                 }else{
                     printf("Enter the number to search: ");
                     scanf("%d", &num);
-                    if(SearchNode(Root, num)){
+                    if(SearchNode(num) == 1){
                         printf("Number %d FOUND in the tree!\n", num);
                     }else{
                         printf("Number %d NOT FOUND in the tree!\n", num);
@@ -181,16 +181,21 @@ void DisplayLeafNodes(TREENODE *Root){
     }
 }
 
-int SearchNode(TREENODE *Root, int num){
-    if(Root == NULL){
-        return 0;
+int SearchNode(int num){
+    TREENODE *Current;
+    
+    Current = Root;
+    
+    while(Current != NULL){
+        if(Current->num == num){
+            return 1;
+        }
+        
+        if(num < Current->num){
+            Current = Current->left;
+        }else{
+            Current = Current->right;
+        }
     }
-    if(Root->num == num){
-        return 1;
-    }
-    if(num < Root->num){
-        return SearchNode(Root->left, num);
-    }else{
-        return SearchNode(Root->right, num);
-    }
+    return 0;
 }
