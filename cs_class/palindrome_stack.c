@@ -17,9 +17,9 @@ typedef struct StackType {
 STACK S;
 
 void InitStack();
+int StackEmpty();
 void Push(char c);
 char Pop();
-int StackEmpty();
 
 int main() {
     char str[SIZE];
@@ -57,6 +57,14 @@ void InitStack() {
     S.Top = -1;
 }
 
+int StackEmpty() {
+    if (S.Top == -1) {
+        return 1; 
+    } else {
+        return 0;
+    }
+}
+
 void Push(char c) {
     if (S.Top == SIZE - 1) {
         printf("Stack Overflow.\n");
@@ -75,12 +83,4 @@ char Pop() {
     c = S.A[S.Top];
     S.Top--;
     return c;
-}
-
-int StackEmpty() {
-    if (S.Top == -1) {
-        return 1; 
-    } else {
-        return 0;
-    }
 }
