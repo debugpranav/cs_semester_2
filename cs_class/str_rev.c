@@ -51,10 +51,12 @@ int main() {
     return 0;
 }
 
+//initializing the stack
 void InitStack() {
     S.Top = -1;
 }
 
+//check if the stack is empty
 int StackEmpty() {
     if (S.Top == -1) {
         return 1; 
@@ -63,6 +65,7 @@ int StackEmpty() {
     }
 }
 
+//push function
 void Push(char c) {
     if (S.Top == SIZE - 1) {
         printf("Stack Overflow.\n");
@@ -72,6 +75,7 @@ void Push(char c) {
     S.A[S.Top] = c;
 }
 
+//pop function
 char Pop() {
     char c;
     
