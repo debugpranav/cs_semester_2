@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#define SIZE 100
+#define SIZE 30
 
 typedef struct StackType {
     char A[SIZE];
