@@ -19,6 +19,7 @@ STACK S;
 void InitStack();
 void Push(char c);
 char Pop();
+int StackEmpty();
 
 int main() {
     char str[SIZE];
@@ -74,4 +75,12 @@ char Pop() {
     c = S.A[S.Top];
     S.Top--;
     return c;
+}
+
+int StackEmpty() {
+    if (S.Top == -1) {
+        return 1; 
+    } else {
+        return 0;
+    }
 }
